@@ -251,22 +251,25 @@
                     <input type="email" name="email" id="email" class="mt-2 px-3 py-3 placeholder-gray-600 text-gray-600 bg-white rounded text-sm shadow w-full " placeholder="Email">
                 </div> 
                 <div class="w-full mb-4 mt-8">
-                    <label class="uppercase text-gray-600 text-xs font-bold" name="alamat" id="alamat">alamat</label>
-                    <textarea  cols="80" rows= 4 class="mt-2 px-3 py-3 placeholder-gray-600 text-gray-600 bg-white rounded text-sm shadow w-full " placeholder="Tuliskan Pesan..."></textarea></textarea>
+                    <label class="uppercase text-gray-600 text-xs font-bold">alamat</label>
+                    <textarea  cols="80" rows= 4 class="mt-2 px-3 py-3 placeholder-gray-600 text-gray-600 bg-white rounded text-sm shadow w-full " name="alamat" id="alamat" placeholder="Tuliskan Pesan..."></textarea></textarea>
                 </div>
                 <div class="mt-6 ">
                     <button class="bg-indigo-700 text-white text-sm font-bold uppercase px-6 py-3 rounded shadow hover:bg-indigo-900 hover:shadow-lg" type="button">Kirim Pesan</button>
                 </div>
+		<span id="success"></span>
             </form>
         </div>
     	<script>
 		const scriptURL = 'https://script.google.com/macros/s/AKfycbzikybaXmvBUMVhPOmcIOl6i3lYun1PBPILc7jXRSy9XSI966AZ842Agyu9bEOeABgxow/exec'
 		const form = document.forms['submit-to-google-sheet']
-	  
+	  	const success = document.getElementById('success');
 		form.addEventListener('submit', e => {
 		  e.preventDefault()
 		  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-			.then(response => console.log('Success!', response))
+			.then(response => {
+				success.innerHTML="data successfully submit"; 
+			})
 			.catch(error => console.error('Error!', error.message))
 		})
 	  </script>
